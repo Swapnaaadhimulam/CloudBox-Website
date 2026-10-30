@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create account | CloudBox</title><link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/auth.js"></script>
+</head>
+<body class="auth-page">
+  <a class="brand auth-brand" href="index.html"><span class="brand-icon">☁</span> CloudBox</a>
+  <main class="auth-card">
+    <a class="back-link" href="index.html">← Back to home</a>
+    <div class="auth-heading"><div class="large-icon">✦</div><h1>Create your account</h1><p>Start storing your files in the cloud.</p></div>
+    <form id="signup-form">
+      <label for="email">Email address</label><input id="email" type="email" placeholder="you@example.com" required autocomplete="email">
+      <label for="password">Password</label><input id="password" type="password" placeholder="At least 6 characters" minlength="6" required autocomplete="new-password">
+      <label for="confirm-password">Confirm password</label><input id="confirm-password" type="password" placeholder="Enter password again" minlength="6" required autocomplete="new-password">
+      <button class="button full-button" type="submit">Create account</button>
+      <p id="auth-message" class="message" role="status"></p>
+    </form>
+    <p class="auth-switch">Already registered? <a href="login.html">Log in</a></p>
+  </main>
+  <script type="module">
+    import { signup } from "./js/auth.js";
+    document.querySelector("#signup-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const message = document.querySelector("#auth-message");
+      const password = document.querySelector("#password").value;
+      const confirm = document.querySelector("#confirm-password").value;
+      if (password !== confirm) { message.textContent = "Passwords do not match."; return; }
+      message.textContent = "Creating your account...";
+      try {
+        await signup(document.querySelector("#email").value.trim(), password);
+        window.location.href = "dashboard.html";
+      } catch (error) { message.textContent = error.message; }
+    });
+  </script>
+</body>
+</html>

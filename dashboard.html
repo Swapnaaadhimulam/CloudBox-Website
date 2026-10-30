@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My files | CloudBox</title><link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/dashboard.js"></script>
+</head>
+<body class="dashboard-page">
+  <header class="dashboard-header">
+    <a class="brand" href="index.html"><span class="brand-icon">☁</span> CloudBox</a>
+    <div class="user-area"><span id="user-email">Loading account...</span><button id="logout-button" class="button button-light button-small">Log out</button></div>
+  </header>
+  <main class="dashboard-main">
+    <div class="dashboard-title"><div><span class="eyebrow">YOUR PERSONAL SPACE</span><h1>My files</h1><p>Manage the files stored in your cloud.</p></div>
+      <label class="button upload-button" for="file-input">＋ Upload files</label><input id="file-input" type="file" multiple hidden>
+    </div>
+    <div class="storage-panel"><div><span class="storage-symbol">☁</span><div><b>Your cloud storage</b><p id="storage-count">Loading your files...</p></div></div><span class="storage-tag">Firebase Storage</span></div>
+    <div class="files-heading"><h2>All files</h2><button id="refresh-button" class="text-button">↻ Refresh</button></div>
+    <p id="status-message" class="message" role="status"></p>
+    <section id="file-list" class="file-grid"><div class="empty-state">Loading files...</div></section>
+    <p class="dashboard-note">Files are stored in your private Firebase Storage account folder.</p>
+  </main>
+</body>
+</html>
